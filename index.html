@@ -56,14 +56,18 @@
 
   <script>
  fetch('https://api-open.data.gov.sg/v2/real-time/api/two-hr-forecast')
-  .then(response => response.json())
-  .then(responsedata => {
-    console.log("Full API Response:", responsedata); // Check the structure
+  .then((response) => response.json())
+  .then((response) => {
+    console.log("Full API Response:", response.data);
 
     // Check if 'items' exists and is an array with at least one item
-    if (responsedata.items && Array.isArray(responsedata.items) && responsedata.items.length > 0) {
-      let timestamp = responsedata.items[0].update_timestamp;
-      let forecasts = responsedata.items[0].forecasts;
+    if (
+        response.data.items && 
+        Array.isArray(response.data.items) && 
+        response.data.items.length > 0
+    ) {
+      let timestamp = response.data.items[0].update_timestamp;
+      let forecasts = response.data.items[0].forecasts;
 
       // Log the timestamp and forecasts
       console.log("Timestamp:", timestamp);
